@@ -46,6 +46,7 @@ body {
 .heading > .h1 {
   color: #ffcc03;
   letter-spacing: 0.5rem;
+  text-transform: uppercase;
   text-shadow: 3px 2px 2px rgb(29, 44, 94);
   /* text-shadow: 3px 2px 2px #f3f2f2; */
   /* -webkit-text-stroke: 4px rgb(56, 106, 187); */
