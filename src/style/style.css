@@ -25,6 +25,21 @@ body {
   width: 100%;
 }
 
+button {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
 /* HEADER */
 
 .header {
@@ -41,6 +56,16 @@ body {
   font-family: Tahoma, sans-serif;
   font-size: 4.5rem;
   font-weight: 600;
+}
+
+.h2 {
+  font-family: Tahoma, sans-serif;
+  font-size: 2.125rem;
+  font-weight: 600;
+}
+
+.paragraph {
+  font-size: 1.2rem;
 }
 
 .heading > .h1 {
@@ -179,4 +204,73 @@ body {
   color: #eaeaea;
   font-size: 1.25rem;
   text-align: center;
+}
+
+/* MODAL OPTIONS */
+.modal {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: #0000003c;
+  z-index: 1;
+}
+
+.modal > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.modal::after {
+}
+
+.modal-start {
+  background-color: #eaeaea;
+  padding: 4rem;
+  border: 6px solid rgb(46, 80, 180);
+  border-radius: 1rem;
+  box-shadow: 5px 5px 0px 0px rgb(29, 44, 94);
+  margin: 0 auto;
+  max-width: 44rem;
+
+  text-align: center;
+  width: 100%;
+}
+
+.modal-start > .h2 {
+  margin-bottom: 1rem;
+  color: rgb(46, 80, 180);
+}
+
+.modal-start > .paragraph {
+  margin: auto;
+  margin-bottom: 1rem;
+  max-width: 30rem;
+  width: 100%;
+}
+
+.modal-btn {
+  background-color: rgb(46, 80, 180);
+  border-radius: 1rem;
+  color: #eaeaea;
+  /* color: #fbe694; */
+
+  letter-spacing: 0.25rem;
+  padding: 1rem 0rem;
+  text-transform: uppercase;
+
+  width: 15rem;
+
+  box-shadow: 0px 10px 0px 0px rgb(29, 44, 94);
+}
+
+.modal-btn:active {
+  transform: translateY(10px);
+  box-shadow: 0px 0px 0px 0px rgb(29, 44, 94);
 }
