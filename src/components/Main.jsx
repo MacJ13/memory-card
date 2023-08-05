@@ -2,13 +2,15 @@ import CardGrid from "./Card/CardGrid";
 import ModalStart from "./Modal/ModalStart";
 
 import { useState } from "react";
+import ScoreBoard from "./Scoreboard/ScoreBoard";
 
 const Main = () => {
   const [game, setGame] = useState({
     isStart: true,
     playing: false,
-    score: 0,
     level: 1,
+    currentScore: 0,
+    highScore: 0,
   });
 
   const startGame = () => {
@@ -21,6 +23,11 @@ const Main = () => {
     else if (game.playing)
       return (
         <>
+          <ScoreBoard
+            level={game.level}
+            current={game.currentScore}
+            high={game.highScore}
+          />
           <CardGrid />
         </>
       );
