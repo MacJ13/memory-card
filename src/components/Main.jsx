@@ -1,7 +1,13 @@
+import ModalStart from "./Modal/ModalStart";
+
 const Main = () => {
+  const startGame = () => {
+    console.log("start game");
+  };
+
   return (
     <main className="main">
-      <div>main</div>
+      <ModalStart onHandleClick={startGame} />;
     </main>
   );
 };
