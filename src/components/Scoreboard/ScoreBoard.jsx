@@ -6,8 +6,8 @@ import Score from "./Score";
 const ScoreBoard = ({ level, current, high }) => {
   return (
     <>
-      <h2 className="h2 level">Level {level}</h2>
       <div className="score-board">
+        <h2 className="h2 level">Level {level}</h2>
         <Score cls="current" result={current} />
         <Score cls="high" result={high} />
       </div>
