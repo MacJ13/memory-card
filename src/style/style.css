@@ -14,11 +14,14 @@ body {
   /* background-color: #6f8eeb; */
   background: rgb(138, 164, 241);
   background: rgb(111, 142, 235);
-  background: radial-gradient(
-    circle,
-    rgba(111, 142, 235, 1) 0%,
-    rgba(138, 164, 241, 1) 100%
-  );
+  background-image: radial-gradient(
+      circle,
+      rgba(111, 142, 235, 0.5) 0%,
+      rgba(138, 164, 241, 0.5) 100%
+    ),
+    url(../assets/background.jpg);
+  background-size: cover;
+  background-position: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   min-height: 100vh;
@@ -36,7 +39,8 @@ button {
 
 #root {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  /* grid-template-rows: auto 1fr auto; */
+  grid-template-rows: 1fr auto;
   min-height: 100vh;
 }
 
@@ -44,7 +48,7 @@ button {
 
 .header {
   margin-bottom: 2rem;
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   width: 100%;
 }
 
@@ -54,18 +58,18 @@ button {
 
 .h1 {
   font-family: Tahoma, sans-serif;
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-weight: 600;
 }
 
 .h2 {
   font-family: Tahoma, sans-serif;
-  font-size: 2.125rem;
+  font-size: 2.75rem;
   font-weight: 600;
 }
 
 .paragraph {
-  font-size: 1.2rem;
+  font-size: 1.175rem;
 }
 
 .heading > .h1 {
@@ -76,6 +80,10 @@ button {
   /* text-shadow: 3px 2px 2px #f3f2f2; */
   /* -webkit-text-stroke: 4px rgb(56, 106, 187); */
   -webkit-text-stroke: 4px rgb(57, 94, 169);
+}
+
+.heading > img {
+  width: 25rem;
 }
 
 /* FOOTER */
@@ -113,11 +121,31 @@ button {
 
 .score-board {
   display: flex;
-  justify-content: space-evenly;
-  margin: 0 auto;
-  margin-bottom: 4rem;
-  max-width: 40rem;
+  /* justify-content: space-evenly; */
+  align-items: center;
+  gap: 1.25rem;
+  margin: 3rem auto;
+  /* margin-bottom: 3rem; */
+  max-width: 70rem;
   width: 100%;
+}
+
+.level {
+  font-size: 5rem;
+  letter-spacing: 4px;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #ffcc03;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  text-shadow: 3px 2px 2px rgb(29, 44, 94);
+  /* text-shadow: 3px 2px 2px #f3f2f2; */
+  /* -webkit-text-stroke: 4px rgb(56, 106, 187); */
+  -webkit-text-stroke: 4px rgb(57, 94, 169);
+
+  margin-right: auto;
 }
 
 .score {
@@ -227,9 +255,6 @@ button {
   transform: translate(-50%, -50%);
 }
 
-.modal::after {
-}
-
 .modal-start {
   background-color: #eaeaea;
   padding: 4rem;
@@ -251,8 +276,6 @@ button {
 .modal-start > .paragraph {
   margin: auto;
   margin-bottom: 1rem;
-  max-width: 30rem;
-  width: 100%;
 }
 
 .modal-btn {
@@ -273,14 +296,4 @@ button {
 .modal-btn:active {
   transform: translateY(10px);
   box-shadow: 0px 0px 0px 0px rgb(29, 44, 94);
-}
-
-.level {
-  color: #eaeaea;
-  letter-spacing: 4px;
-  margin-bottom: 2rem;
-
-  text-align: center;
-  text-decoration: underline;
-  text-transform: uppercase;
 }
