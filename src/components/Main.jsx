@@ -17,6 +17,10 @@ const Main = () => {
     setGame({ ...game, isStart: !game.isStart, playing: true });
   };
 
+  const onCardClick = (pokemon) => {
+    console.log({ pokemon });
+  };
+
   const renderGame = () => {
     if (game.isStart && !game.playing)
       return <ModalStart onHandleClick={startGame} />;
@@ -28,7 +32,7 @@ const Main = () => {
             current={game.currentScore}
             high={game.highScore}
           />
-          <CardGrid />
+          <CardGrid onCardClick={onCardClick} />
         </>
       );
   };
