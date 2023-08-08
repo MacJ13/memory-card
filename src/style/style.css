@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Cursed Timer";
+  src: local("Cursed Timer"),
+    url("./src/assets/fonts/LcdSolid-VPzB.ttf") format("truetype");
+}
+
 *,
 *::after,
 *::before {
@@ -64,8 +70,13 @@ button {
 
 .h2 {
   font-family: Tahoma, sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 600;
+}
+
+.h3 {
+  font-family: Tahoma, sans-serif;
+  font-size: 1.5rem;
 }
 
 .paragraph {
@@ -150,11 +161,13 @@ button {
 }
 
 .score {
-  background-color: #eaeaea;
+  font-family: "Cursed Timer", sans-serif;
+  /* background-color: #eaeaea; */
   border-radius: 1.5rem;
-  border: 2px solid rgb(46, 80, 180);
-  color: rgb(46, 80, 180);
-  font-size: 1.1rem;
+  /* border: 2px solid rgb(46, 80, 180);
+  color: rgb(46, 80, 180); */
+  color: #eaeaea;
+  font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: 2px;
   padding: 1rem;
@@ -164,7 +177,8 @@ button {
 }
 
 .score-high {
-  background-color: #fbe694;
+  /* background-color: #fbe694; */
+  color: #fbe694;
 }
 
 /* CARDS */
@@ -260,6 +274,8 @@ span[class^="dot-"] {
 .card-pokeball {
   width: 3.5rem;
   opacity: 0.76;
+
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
   animation: rotate 1.5s infinite;
 }
 
@@ -314,11 +330,13 @@ span[class^="dot-"] {
 }
 
 .modal-start > .h2 {
-  margin-bottom: 1.5rem;
+  font-family: "Cursed Timer", sans-serif;
+
+  margin-bottom: 2rem;
   color: rgb(46, 80, 180);
   letter-spacing: 4px;
-  text-transform: uppercase;
   word-spacing: -1rem;
+  text-transform: uppercase;
 }
 
 .modal-start > .paragraph {
