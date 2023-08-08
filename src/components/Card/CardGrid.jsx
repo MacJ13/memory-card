@@ -1,29 +1,62 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import { useFetch } from "../useFetch";
-import Card from "./Card";
-import CardLoading from "./CardLoading";
+import { useEffect, useState } from "react";
+import CardItem from "./CardItem";
 
-const CardGrid = ({ onCardClick }) => {
-  const [data, error] = useFetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${4}&offset=${0}`
-  );
+const shuffledElements = (data) => {
+  return [...data].sort((a, b) => 0.5 - Math.random());
+};
+
+const CardGrid = ({ data, onCardClick }) => {
+  const [triggerAnimation, setTriggerAnimation] = useState(true);
+  const [pokemons, setPokemons] = useState(shuffledElements(data));
+
+  let trigerTimer = 0;
+
+  const onHandleClick = (pokemon) => {
+    if (!trigerTimer) {
+      onCardClick(pokemon);
+      setTriggerAnimation(true);
+      trigerTimer = setTimeout(() => {
+        setTriggerAnimation(false);
+      }, 500);
+      const shuffledTimer = setTimeout(() => {
+        setPokemons(shuffledElements(pokemons));
+      }, 300);
+      return () => {
+        clearTimeout(trigerTimer);
+        clearTimeout(shuffledTimer);
+      };
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTriggerAnimation(false);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   const renderCards = () => {
-    return data.map((pokemon) => {
+    return pokemons.map((pokemon) => {
       return (
-        <Card key={pokemon.name} pokemon={pokemon} onCardClick={onCardClick} />
+        <CardItem
+          key={pokemon.name}
+          triggerAnimation={triggerAnimation}
+          pokemon={pokemon}
+          onCardClick={onHandleClick}
+        />
       );
     });
   };
+
   return (
     <>
-      {data.length === 0 && !error ? (
-        <CardLoading />
-      ) : (
-        <div className="card-grid">{renderCards()}</div>
-      )}
+      <div className="card-grid">{renderCards()}</div>
     </>
   );
 };
