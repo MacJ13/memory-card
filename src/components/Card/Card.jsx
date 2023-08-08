@@ -1,16 +1,23 @@
 /* eslint-disable react/prop-types */
-const Card = ({ pokemon, onCardClick }) => {
-  const handleClick = () => {
-    onCardClick(pokemon);
-  };
+import { useFetch } from "../useFetch";
+import CardGrid from "./CardGrid";
+import CardLoading from "./CardLoading";
+
+const Card = ({ limit, onCardClick }) => {
+  const OFFSET = Math.round(Math.random() * 300);
+
+  const [data, error] = useFetch(
+    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${OFFSET}`
+  );
 
   return (
-    <div className="card" onClick={handleClick}>
-      <div className="card-photo">
-        {pokemon.img && <img src={pokemon.img} alt={pokemon.name} />}
-      </div>
-      <div className="card-title">{pokemon.name}</div>
-    </div>
+    <>
+      {data.length === 0 && !error ? (
+        <CardLoading />
+      ) : (
+        <CardGrid onCardClick={onCardClick} data={data} />
+      )}
+    </>
   );
 };
 
