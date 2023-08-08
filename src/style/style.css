@@ -274,9 +274,10 @@ span[class^="dot-"] {
 .card-pokeball {
   width: 3.5rem;
   opacity: 0.76;
+  transform: translate(-5rem);
 
   /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-  animation: rotate 1.5s infinite;
+  animation: rotate 2s infinite;
 }
 
 .dot-one {
@@ -382,7 +383,7 @@ span[class^="dot-"] {
 
 @keyframes rotate {
   50% {
-    transform: translateX(5rem) rotate(90deg);
+    transform: translateX(5rem) rotate(135deg);
   }
 }
 
