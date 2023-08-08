@@ -77,6 +77,7 @@ const Main = () => {
       return (
         <ModalGameOver
           currentScore={game.currentScore}
+          highScore={game.highScore}
           onHandleClick={restartGame}
         />
       );
