@@ -1,6 +1,6 @@
 import ModalStart from "./Modal/ModalStart";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ScoreBoard from "./Scoreboard/ScoreBoard";
 import ModalNextLevel from "./Modal/ModalNextLevel";
 import Card from "./Card/Card";
@@ -13,17 +13,18 @@ const Main = () => {
     currentScore: 0,
     highScore: 0,
   });
-
   const [clickedPokemons, setClickedPokemons] = useState([]);
+  const scoreRef = useRef(0);
 
   const limit = 4 * game.level >= 16 ? 16 : 4 * game.level;
 
   const start = game.status === "start";
-
-  const lost = setClickedPokemons.length !== 0 && game.status === "gameover";
+  const gameover = game.status === "gameover";
+  // const lost = setClickedPokemons.length !== 0 && game.status === "gameover";
 
   // to imptove this logic !!!!!!!!!!!!!!!!!!!!!!!
-  const win = limit === clickedPokemons.length;
+  // const win = limit === clickedPokemons.length;
+  const win = game.status === "winner";
 
   const startGame = () => {
     setGame({
@@ -38,33 +39,62 @@ const Main = () => {
   };
 
   const nextLevel = () => {
-    setGame({ ...game, level: game.level + 1 });
+    setGame({ ...game, status: "playing", level: game.level + 1 });
     setClickedPokemons([]);
+  };
+
+  const increaseScore = (gameStatus, score) => {
+    if (game.currentScore >= game.highScore) {
+      setGame({
+        ...game,
+        status: gameStatus,
+        currentScore: score,
+        highScore: score,
+      });
+    } else {
+      setGame({ ...game, status: gameStatus, currentScore: score });
+    }
   };
 
   const onCardClick = (pokemon) => {
     const { name } = pokemon;
+    console.log({ game });
+    console.log(clickedPokemons);
 
     const clicked = clickedPokemons.find((clicked) => clicked.name === name);
 
-    // in condition statements try to insert to set status "winnet"
-
     if (clicked) {
+      scoreRef.current = 0;
       setGame({ ...game, status: "gameover" });
+      return;
+      // in condition statements try to insert to set status "winnet"
+    }
+    const score = game.currentScore + 1;
+    scoreRef.current = score;
+    // if (game.currentScore >= game.highScore) {
+    //   setGame({ ...game, currentScore: score, highScore: score });
+    // } else {
+    //   setGame({ ...game, currentScore: score });
+    // }
+    // console.log({ score, current: game.score });
+
+    if (scoreRef.current >= limit) {
+      increaseScore("winner", score);
+      scoreRef.current = 0;
     } else {
       setClickedPokemons([...clickedPokemons, pokemon]);
-      const score = game.currentScore + 1;
-      setGame({ ...game, currentScore: score });
-      if (game.currentScore >= game.highScore) {
-        setGame({ ...game, currentScore: score, highScore: score });
-      } else {
-        setGame({ ...game, currentScore: score });
-      }
+      increaseScore("playing", score);
     }
+    // console.log({
+    //   length: clickedPokemons.length,
+    //   score: game.currentScore,
+    //   scoreRef: scoreRef.current,
+    // });
   };
 
   const renderGame = () => {
-    if (win)
+    if (start) return <ModalStart onHandleClick={startGame} />;
+    else if (win)
       return (
         <ModalNextLevel
           game={game}
@@ -72,8 +102,7 @@ const Main = () => {
           onHandleClick={nextLevel}
         />
       );
-    else if (start) return <ModalStart onHandleClick={startGame} />;
-    else if (lost)
+    else if (gameover)
       return (
         <ModalGameOver
           currentScore={game.currentScore}
