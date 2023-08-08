@@ -1,30 +1,86 @@
-import CardGrid from "./Card/CardGrid";
 import ModalStart from "./Modal/ModalStart";
 
 import { useState } from "react";
 import ScoreBoard from "./Scoreboard/ScoreBoard";
+import ModalNextLevel from "./Modal/ModalNextLevel";
+import Card from "./Card/Card";
+import ModalGameOver from "./Modal/ModalGameOver";
 
 const Main = () => {
   const [game, setGame] = useState({
-    isStart: true,
-    playing: false,
+    status: "start",
     level: 1,
     currentScore: 0,
     highScore: 0,
   });
 
+  const [clickedPokemons, setClickedPokemons] = useState([]);
+
+  const limit = 4 * game.level >= 16 ? 16 : 4 * game.level;
+
+  const start = game.status === "start";
+
+  const lost = setClickedPokemons.length !== 0 && game.status === "gameover";
+
+  // to imptove this logic !!!!!!!!!!!!!!!!!!!!!!!
+  const win = limit === clickedPokemons.length;
+
   const startGame = () => {
-    setGame({ ...game, isStart: !game.isStart, playing: true });
+    setGame({
+      ...game,
+      status: "playing",
+    });
+  };
+
+  const restartGame = () => {
+    setGame({ ...game, status: "playing", currentScore: 0, level: 1 });
+    setClickedPokemons([]);
+  };
+
+  const nextLevel = () => {
+    setGame({ ...game, level: game.level + 1 });
+    setClickedPokemons([]);
   };
 
   const onCardClick = (pokemon) => {
-    console.log({ pokemon });
+    const { name } = pokemon;
+
+    const clicked = clickedPokemons.find((clicked) => clicked.name === name);
+
+    // in condition statements try to insert to set status "winnet"
+
+    if (clicked) {
+      setGame({ ...game, status: "gameover" });
+    } else {
+      setClickedPokemons([...clickedPokemons, pokemon]);
+      const score = game.currentScore + 1;
+      setGame({ ...game, currentScore: score });
+      if (game.currentScore >= game.highScore) {
+        setGame({ ...game, currentScore: score, highScore: score });
+      } else {
+        setGame({ ...game, currentScore: score });
+      }
+    }
   };
 
   const renderGame = () => {
-    if (game.isStart && !game.playing)
-      return <ModalStart onHandleClick={startGame} />;
-    else if (game.playing)
+    if (win)
+      return (
+        <ModalNextLevel
+          game={game}
+          onResetClick={restartGame}
+          onHandleClick={nextLevel}
+        />
+      );
+    else if (start) return <ModalStart onHandleClick={startGame} />;
+    else if (lost)
+      return (
+        <ModalGameOver
+          currentScore={game.currentScore}
+          onHandleClick={restartGame}
+        />
+      );
+    else {
       return (
         <>
           <ScoreBoard
@@ -32,9 +88,14 @@ const Main = () => {
             current={game.currentScore}
             high={game.highScore}
           />
-          <CardGrid onCardClick={onCardClick} />
+          <Card
+            limit={limit}
+            lastPokemon={clickedPokemons.slice(-1)}
+            onCardClick={onCardClick}
+          />
         </>
       );
+    }
   };
 
   return <main className="main">{renderGame()}</main>;
