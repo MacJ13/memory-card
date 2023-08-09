@@ -1,10 +1,8 @@
-import ModalStart from "./Modal/ModalStart";
-
 import { useRef, useState } from "react";
-import ScoreBoard from "./Scoreboard/ScoreBoard";
-import ModalNextLevel from "./Modal/ModalNextLevel";
+
 import Card from "./Card/Card";
-import ModalGameOver from "./Modal/ModalGameOver";
+import Modal from "./Modal/Modal";
+import ScoreBoard from "./Scoreboard/ScoreBoard";
 
 const Main = () => {
   const [game, setGame] = useState({
@@ -17,14 +15,15 @@ const Main = () => {
   const scoreRef = useRef(0);
 
   const limit = 4 * game.level >= 16 ? 16 : 4 * game.level;
+  const playing = game.status === "playing";
 
   const start = game.status === "start";
-  const gameover = game.status === "gameover";
+  // const gameover = game.status === "gameover";
   // const lost = setClickedPokemons.length !== 0 && game.status === "gameover";
 
   // to imptove this logic !!!!!!!!!!!!!!!!!!!!!!!
   // const win = limit === clickedPokemons.length;
-  const win = game.status === "winner";
+  // const win = game.status === "winner";
 
   const startGame = () => {
     setGame({
@@ -43,7 +42,8 @@ const Main = () => {
     setClickedPokemons([]);
   };
 
-  const increaseScore = (gameStatus, score) => {
+  const increaseScore = (gameStatus) => {
+    const score = game.currentScore + 1;
     if (game.currentScore >= game.highScore) {
       setGame({
         ...game,
@@ -58,74 +58,101 @@ const Main = () => {
 
   const onCardClick = (pokemon) => {
     const { name } = pokemon;
-    console.log({ game });
-    console.log(clickedPokemons);
 
     const clicked = clickedPokemons.find((clicked) => clicked.name === name);
-
+    scoreRef.current++;
     if (clicked) {
       scoreRef.current = 0;
-      setGame({ ...game, status: "gameover" });
-      return;
-      // in condition statements try to insert to set status "winnet"
-    }
-    const score = game.currentScore + 1;
-    scoreRef.current = score;
-    // if (game.currentScore >= game.highScore) {
-    //   setGame({ ...game, currentScore: score, highScore: score });
-    // } else {
-    //   setGame({ ...game, currentScore: score });
-    // }
-    // console.log({ score, current: game.score });
-
-    if (scoreRef.current >= limit) {
-      increaseScore("winner", score);
+      setGame({ ...game, status: "gameover", level: 1 });
+    } else if (scoreRef.current >= limit) {
+      increaseScore("winner");
       scoreRef.current = 0;
     } else {
       setClickedPokemons([...clickedPokemons, pokemon]);
-      increaseScore("playing", score);
+      increaseScore("playing");
     }
-    // console.log({
-    //   length: clickedPokemons.length,
-    //   score: game.currentScore,
-    //   scoreRef: scoreRef.current,
-    // });
   };
 
   const renderGame = () => {
-    if (start) return <ModalStart onHandleClick={startGame} />;
-    else if (win)
-      return (
-        <ModalNextLevel
-          game={game}
-          onResetClick={restartGame}
-          onHandleClick={nextLevel}
-        />
-      );
-    else if (gameover)
-      return (
-        <ModalGameOver
-          currentScore={game.currentScore}
-          highScore={game.highScore}
-          onHandleClick={restartGame}
-        />
-      );
-    else {
-      return (
-        <>
+    return (
+      <>
+        {!start && (
           <ScoreBoard
             level={game.level}
             current={game.currentScore}
             high={game.highScore}
           />
-          <Card
-            limit={limit}
-            lastPokemon={clickedPokemons.slice(-1)}
-            onCardClick={onCardClick}
+        )}
+
+        {playing ? (
+          <Card limit={limit} onCardClick={onCardClick} />
+        ) : (
+          <Modal
+            game={game}
+            onRestartClick={restartGame}
+            onNextClick={nextLevel}
+            onStartClick={startGame}
           />
-        </>
-      );
-    }
+        )}
+      </>
+    );
+    // if (playing) {
+    //   return (
+    //     <>
+    //       <ScoreBoard
+    //         level={game.level}
+    //         current={game.currentScore}
+    //         high={game.highScore}
+    //       />
+    //       <Card
+    //         limit={limit}
+    //         onCardClick={onCardClick}
+    //       />
+    //     </>
+    //   );
+    // } else {
+    //   return (
+    //     <Modal
+    //       game={game}
+    //       onRestartClick={restartGame}
+    //       onNextClick={nextLevel}
+    //       onStartClick={startGame}
+    //     />
+    //   );
+
+    // if (start) return <ModalStart onHandleClick={startGame} />;
+    // else if (win)
+    //   return (
+    //     <ModalNextLevel
+    //       game={game}
+    //       onResetClick={restartGame}
+    //       onHandleClick={nextLevel}
+    //     />
+    //   );
+    // else if (gameover)
+    //   return (
+    //     <ModalGameOver
+    //       currentScore={game.currentScore}
+    //       highScore={game.highScore}
+    //       onHandleClick={restartGame}
+    //     />
+    //   );
+    // else {
+    //   return (
+    //     <>
+    //       <ScoreBoard
+    //         level={game.level}
+    //         current={game.currentScore}
+    //         high={game.highScore}
+    //       />
+    //       <Card
+    //         limit={limit}
+    //         lastPokemon={clickedPokemons.slice(-1)}
+    //         onCardClick={onCardClick}
+    //       />
+    //     </>
+    //   );
+    // }
   };
 
   return <main className="main">{renderGame()}</main>;
