@@ -307,6 +307,12 @@ span[class^="dot-"] {
 
   background-color: #0000003c;
   z-index: 1;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+.transparent {
+  opacity: 0;
 }
 
 .modal > * {
