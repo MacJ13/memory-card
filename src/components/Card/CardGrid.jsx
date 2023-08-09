@@ -16,14 +16,15 @@ const CardGrid = ({ data, onCardClick }) => {
 
   const onHandleClick = (pokemon) => {
     if (!trigerTimer) {
-      onCardClick(pokemon);
       setTriggerAnimation(true);
       trigerTimer = setTimeout(() => {
         setTriggerAnimation(false);
       }, 500);
       const shuffledTimer = setTimeout(() => {
         setPokemons(shuffledElements(pokemons));
+        onCardClick(pokemon);
       }, 300);
+
       return () => {
         clearTimeout(trigerTimer);
         clearTimeout(shuffledTimer);
