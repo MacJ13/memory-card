@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 
+const sleep = (s) => {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, 1000 * s);
+  });
+};
+
 export const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
@@ -34,6 +40,8 @@ export const useFetch = (url) => {
             img: pokemon.sprites.front_default,
           };
         });
+
+        await sleep(1);
 
         setData(pokemonData);
       } catch (err) {
