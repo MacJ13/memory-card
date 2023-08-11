@@ -63,7 +63,7 @@ const Main = () => {
     scoreRef.current++;
     if (clicked) {
       scoreRef.current = 0;
-      setGame({ ...game, status: "gameover", level: 1 });
+      setGame({ ...game, status: "gameover" });
     } else if (scoreRef.current >= limit) {
       increaseScore("winner");
       scoreRef.current = 0;
