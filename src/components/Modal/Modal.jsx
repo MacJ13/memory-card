@@ -10,12 +10,12 @@ const Modal = ({ game, onRestartClick, onNextClick, onStartClick }) => {
   const [triggerAnimation, setTriggerAnimation] = useState(true);
 
   useEffect(() => {
-    const trigerTimer = setTimeout(() => {
+    const triggerTimer = setTimeout(() => {
       setTriggerAnimation(false);
-    }, 500);
+    }, 300);
 
     return () => {
-      clearTimeout(trigerTimer);
+      clearTimeout(triggerTimer);
     };
   }, []);
   const { status, level, currentScore } = game;
