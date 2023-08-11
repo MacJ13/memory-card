@@ -14,23 +14,19 @@
 
 html {
   box-sizing: border-box;
+
+  font-size: 16px;
 }
 
 body {
   /* background-color: #6f8eeb; */
   /* background: rgb(138, 164, 241); */
   background: rgb(111, 142, 235);
-  background-image: radial-gradient(
-      circle,
-      rgba(111, 142, 235, 0.5) 0%,
-      rgba(138, 164, 241, 0.5) 100%
-    ),
-    url(../assets/background.jpg);
-  background-size: cover;
-  background-position: center;
+
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
   min-height: 100vh;
+  max-width: 1500px;
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -48,6 +44,20 @@ button {
   /* grid-template-rows: auto 1fr auto; */
   grid-template-rows: 1fr auto;
   min-height: 100vh;
+}
+
+.main {
+  background-image: radial-gradient(
+      circle,
+      rgba(111, 142, 235, 0.5) 0%,
+      rgba(138, 164, 241, 0.5) 100%
+    ),
+    url(../assets/background.jpg);
+  background-size: cover;
+  background-position: center;
+
+  padding: 0 2rem;
+  width: 100%;
 }
 
 .h1 {
@@ -82,12 +92,6 @@ button {
 .paragraph {
   font-size: 1.175rem;
   line-height: 1.5;
-}
-
-.main {
-  margin-bottom: 2rem;
-  padding: 0 2rem;
-  width: 100%;
 }
 
 .error {
