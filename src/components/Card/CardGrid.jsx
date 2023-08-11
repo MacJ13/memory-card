@@ -8,28 +8,46 @@ const shuffledElements = (data) => {
   return [...data].sort((a, b) => 0.5 - Math.random());
 };
 
+const sleep = (s) => {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, 1000 * s);
+  });
+};
+
 const CardGrid = ({ data, onCardClick }) => {
   const [triggerAnimation, setTriggerAnimation] = useState(true);
   const [pokemons, setPokemons] = useState(shuffledElements(data));
 
-  let trigerTimer = 0;
+  const invokeAnimation = async (pokemon) => {
+    if (!triggerAnimation) {
+      setTriggerAnimation(true);
+      await sleep(0.3);
+      setPokemons(shuffledElements(pokemons));
+      onCardClick(pokemon);
+      await sleep(0.5);
+      setTriggerAnimation(false);
+    }
+  };
+
+  // let triggerTimer = 0;
 
   const onHandleClick = (pokemon) => {
-    if (!trigerTimer) {
-      setTriggerAnimation(true);
-      trigerTimer = setTimeout(() => {
-        setTriggerAnimation(false);
-      }, 500);
-      const shuffledTimer = setTimeout(() => {
-        setPokemons(shuffledElements(pokemons));
-        onCardClick(pokemon);
-      }, 300);
+    // if (!trigerTimer) {
+    //   setTriggerAnimation(true);
+    //   trigerTimer = setTimeout(() => {
+    //     setTriggerAnimation(false);
+    //   }, 500);
+    //   const shuffledTimer = setTimeout(() => {
+    //     setPokemons(shuffledElements(pokemons));
+    //     onCardClick(pokemon);
+    //   }, 300);
 
-      return () => {
-        clearTimeout(trigerTimer);
-        clearTimeout(shuffledTimer);
-      };
-    }
+    //   return () => {
+    //     clearTimeout(trigerTimer);
+    //     clearTimeout(shuffledTimer);
+    //   };
+    // }
+    invokeAnimation(pokemon);
   };
 
   useEffect(() => {
