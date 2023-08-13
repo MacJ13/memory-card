@@ -7,15 +7,23 @@
   color: #ffcc03;
   letter-spacing: 0.5rem;
   text-transform: uppercase;
-  text-shadow: 3px 2px 2px rgb(29, 44, 94);
+  text-shadow: 4px 2px 2px rgb(29, 44, 94);
   /* text-shadow: 3px 2px 2px #f3f2f2; */
   /* -webkit-text-stroke: 4px rgb(56, 106, 187); */
-  -webkit-text-stroke: 4px rgb(57, 94, 169);
+  -webkit-text-stroke: 2.5px rgb(57, 94, 169);
   margin-bottom: 1.5rem;
+
+  @media (max-width: 800px) {
+    -webkit-text-stroke: 2px rgb(57, 94, 169);
+  }
 }
 
 .heading > img {
   width: 22.5rem;
+
+  @media (max-width: 850px) {
+    width: 20rem;
+  }
 }
 
 // SCORE
@@ -41,6 +49,16 @@
   margin: 3rem auto 4rem auto;
   max-width: 70rem;
   width: 100%;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    gap: 0rem;
+    margin-bottom: 2rem;
+
+    & > .h2 {
+      margin: 0.5rem 0;
+    }
+  }
 }
 
 .score-high {
@@ -58,6 +76,14 @@
   margin-bottom: 3rem;
   max-width: 55rem;
   width: 100%;
+
+  @media (max-width: 850px) {
+    max-width: 30rem;
+  }
+
+  @media (max-width: 440px) {
+    max-width: 20rem;
+  }
 }
 
 .card {
@@ -110,13 +136,16 @@
 }
 
 .card-title {
-  margin-top: -0.5rem;
+  position: relative;
+  top: -0.75rem;
   font-size: 1rem;
   font-weight: 600;
+  // margin-top: -0.5rem;
   text-transform: capitalize;
 }
 
 .card-loading {
+  font-family: "Cursed Timer", sans-serif;
   color: #eaeaea;
 
   display: flex;

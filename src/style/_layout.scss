@@ -1,5 +1,4 @@
 .modal {
-  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -31,6 +30,14 @@
 
   text-align: center;
   width: 100%;
+
+  @media (max-width: 850px) {
+    max-width: 40rem;
+  }
+
+  @media (max-width: 550px) {
+    max-width: 34rem;
+  }
 }
 
 .modal-start > .h2 {
@@ -82,7 +89,7 @@
 
 .footer {
   background-color: rgb(46, 80, 180);
-  color: #eaeaea;
+  color: #eaeaeabe;
   padding: 0.5rem;
   width: 100%;
 }
@@ -90,12 +97,13 @@
 .footer-copyright {
   align-items: center;
   display: flex;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 500;
   justify-content: center;
 }
 
 .footer-copyright svg {
   display: block;
-  fill: #eaeaea;
+  fill: #eaeaeabe;
   margin-left: 0.5rem;
 }

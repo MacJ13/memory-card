@@ -16,6 +16,18 @@ html {
   box-sizing: border-box;
 
   font-size: 16px;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 800px) {
+    font-size: 12px;
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 10px;
+  }
 }
 
 body {
@@ -23,7 +35,9 @@ body {
   /* background: rgb(138, 164, 241); */
   background: rgb(111, 142, 235);
 
-  font-family: Arial, Helvetica, sans-serif;
+  // font-family: Arial, Helvetica, sans-serif;
+  color: rgb(13, 30, 87);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   min-height: 100vh;
   max-width: 1500px;
   margin: 0 auto;
@@ -64,6 +78,10 @@ button {
   font-family: Tahoma, sans-serif;
   font-size: 3.25rem;
   font-weight: 600;
+
+  @media (max-width: 850px) {
+    font-size: 3rem;
+  }
 }
 
 .h2 {
@@ -84,12 +102,13 @@ button {
   text-shadow: 3px 2px 2px rgb(29, 44, 94);
   /* text-shadow: 3px 2px 2px #f3f2f2; */
   /* -webkit-text-stroke: 4px rgb(56, 106, 187); */
-  -webkit-text-stroke: 4px rgb(57, 94, 169);
+  -webkit-text-stroke: 3px rgb(57, 94, 169);
 
   margin-right: auto;
 }
 
 .paragraph {
+  font-weight: 600;
   font-size: 1.175rem;
   line-height: 1.5;
 }
