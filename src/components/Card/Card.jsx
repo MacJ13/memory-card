@@ -1,19 +1,23 @@
 /* eslint-disable react/prop-types */
+import { OFFSET } from "../../data/config";
 import { useFetch } from "../useFetch";
+import CardError from "./CardError";
 import CardGrid from "./CardGrid";
 import CardLoading from "./CardLoading";
 
 const Card = ({ limit, onCardClick }) => {
-  const OFFSET = Math.round(Math.random() * 300);
-
   const [data, error] = useFetch(
     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${OFFSET}`
   );
 
+  const loading = data.length === 0 && !error;
+
   return (
     <>
-      {data.length === 0 && !error ? (
+      {loading ? (
         <CardLoading />
+      ) : error ? (
+        <CardError message={error} />
       ) : (
         <CardGrid onCardClick={onCardClick} data={data} />
       )}
