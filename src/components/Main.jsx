@@ -9,6 +9,7 @@ const Main = () => {
   const [game, setGame] = useState({
     status: "start",
     level: 1,
+    limit: 4,
     currentScore: 0,
     highScore: 0,
   });
@@ -16,7 +17,8 @@ const Main = () => {
   const scoreRef = useRef(0);
 
   const offset = getRandomNumber();
-  const limit = 4 * game.level >= 16 ? 16 : 4 * game.level;
+  // const limit = 4 * game.level >= 16 ? 16 : 4 * game.level;
+  const limit = game.limit;
 
   const playing = game.status === "playing";
 
@@ -28,10 +30,11 @@ const Main = () => {
   // const win = limit === clickedPokemons.length;
   // const win = game.status === "winner";
 
-  const startGame = () => {
+  const startGame = (countLimit) => {
     setGame({
       ...game,
       status: "playing",
+      limit: countLimit,
     });
   };
 

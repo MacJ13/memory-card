@@ -7,7 +7,7 @@ import Heading from "./Heading";
 const ModalStart = ({ onHandleClick }) => {
   const [number, setNumber] = useState(0);
 
-  const { name } = LEVEL_DIFFICULTIES[number];
+  const { name, count } = LEVEL_DIFFICULTIES[number];
 
   const onHandlePrevious = () => {
     if (number === 0) {
@@ -83,7 +83,13 @@ const ModalStart = ({ onHandleClick }) => {
             </svg>
           </button>
         </div>
-        <Button onClick={onHandleClick}>Start game</Button>
+        <Button
+          onClick={() => {
+            onHandleClick(count);
+          }}
+        >
+          Start game
+        </Button>
       </div>
     </>
   );
