@@ -21,8 +21,8 @@ export const initialGame = {
 
 export const LEVEL_DIFFICULTIES = [
   { name: "easy", count: 4 },
-  { name: "medium", count: 6 },
-  { name: "hard", count: 8 },
+  { name: "medium", count: 8 },
+  { name: "hard", count: 12 },
 ];
 
 export const calculateLimit = (level) => {
