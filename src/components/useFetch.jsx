@@ -45,6 +45,7 @@ export const useFetch = (url) => {
 
         setData(pokemonData);
       } catch (err) {
+        console.log(err);
         setError(err.message);
       }
     };
