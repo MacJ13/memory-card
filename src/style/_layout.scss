@@ -55,6 +55,35 @@
   margin-bottom: 2rem;
 }
 
+.modal-controls {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 100%;
+
+  font-family: "Cursed Timer", sans-serif;
+}
+
+.modal-difficulties {
+  color: rgb(46, 80, 180);
+  font-size: 1.75rem;
+  letter-spacing: 2px;
+  width: 12.5rem;
+  text-transform: capitalize;
+}
+
+.modal-chevron-btn {
+  display: block;
+  margin: 0 0.5rem;
+  background-color: transparent;
+
+  & > svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
 /* color: #fbe694; */
 .modal-btn {
   background-color: rgb(46, 80, 180);
