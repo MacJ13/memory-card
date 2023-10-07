@@ -1,4 +1,6 @@
-export const OFFSET = Math.round(Math.random() * 300);
+export const getRandomNumber = () => {
+  return Math.round(Math.random() * 300);
+};
 
 export const STATUS = {
   start: "start",
