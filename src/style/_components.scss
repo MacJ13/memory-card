@@ -175,6 +175,11 @@ span[class^="dot-"] {
   animation: rotate 2s infinite;
 }
 
+.card-error {
+  text-align: center;
+  color: #eaeaea;
+}
+
 .dot-one {
   animation: dot-one 1.5s infinite linear;
 }
