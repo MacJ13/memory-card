@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import Card from "./Card/Card";
 import Modal from "./Modal/Modal";
 import ScoreBoard from "./Scoreboard/ScoreBoard";
+import { getRandomNumber } from "../data/config";
 
 const Main = () => {
   const [game, setGame] = useState({
@@ -14,7 +15,9 @@ const Main = () => {
   const [clickedPokemons, setClickedPokemons] = useState([]);
   const scoreRef = useRef(0);
 
+  const offset = getRandomNumber();
   const limit = 4 * game.level >= 16 ? 16 : 4 * game.level;
+
   const playing = game.status === "playing";
 
   const start = game.status === "start";
@@ -85,7 +88,7 @@ const Main = () => {
         )}
 
         {playing ? (
-          <Card limit={limit} onCardClick={onCardClick} />
+          <Card limit={limit} offset={offset} onCardClick={onCardClick} />
         ) : (
           <Modal
             game={game}
