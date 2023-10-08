@@ -23,12 +23,18 @@ const Main = () => {
   const playing = game.status === "playing";
 
   const start = game.status === "start";
+
   // const gameover = game.status === "gameover";
   // const lost = setClickedPokemons.length !== 0 && game.status === "gameover";
 
   // to imptove this logic !!!!!!!!!!!!!!!!!!!!!!!
   // const win = limit === clickedPokemons.length;
   // const win = game.status === "winner";
+
+  const quitGame = () => {
+    setGame({ ...game, level: 1, limit: 4, currentScore: 0, status: "start" });
+    setClickedPokemons([]);
+  };
 
   const startGame = (countLimit) => {
     setGame({
@@ -95,9 +101,10 @@ const Main = () => {
         ) : (
           <Modal
             game={game}
-            onRestartClick={restartGame}
             onNextClick={nextLevel}
             onStartClick={startGame}
+            onQuitClick={quitGame}
+            onRestartClick={restartGame}
           />
         )}
       </>
