@@ -6,7 +6,13 @@ import ModalNextLevel from "./ModalNextLevel";
 import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const Modal = ({ game, onRestartClick, onNextClick, onStartClick }) => {
+const Modal = ({
+  game,
+  onNextClick,
+  onStartClick,
+  onQuitClick,
+  onRestartClick,
+}) => {
   const [triggerAnimation, setTriggerAnimation] = useState(true);
 
   useEffect(() => {
@@ -31,7 +37,8 @@ const Modal = ({ game, onRestartClick, onNextClick, onStartClick }) => {
       return (
         <ModalGameOver
           currentScore={currentScore}
-          onHandleClick={onRestartClick}
+          onQuitClick={onQuitClick}
+          onRestartClick={onRestartClick}
         />
       );
     else if (win) {
@@ -39,7 +46,7 @@ const Modal = ({ game, onRestartClick, onNextClick, onStartClick }) => {
         <ModalNextLevel
           level={level}
           currentScore={currentScore}
-          onRestartClick={onRestartClick}
+          onQuitClick={onQuitClick}
           onHandleClick={onNextClick}
         />
       );

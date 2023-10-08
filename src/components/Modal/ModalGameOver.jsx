@@ -2,7 +2,7 @@
 
 import Button from "./Button";
 
-const ModalGameOver = ({ onHandleClick, currentScore }) => {
+const ModalGameOver = ({ onRestartClick, onQuitClick, currentScore }) => {
   return (
     <>
       <div className="modal-start">
@@ -14,7 +14,8 @@ const ModalGameOver = ({ onHandleClick, currentScore }) => {
             <em> You also set new record score!</em>
           ) : null} */}
         </p>
-        <Button onClick={onHandleClick}>Restart game</Button>
+        <Button onClick={onRestartClick}>Restart game</Button>
+        <Button onClick={onQuitClick}>Quit</Button>
       </div>
     </>
   );

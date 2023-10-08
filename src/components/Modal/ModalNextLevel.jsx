@@ -6,7 +6,7 @@ const ModalNextLevel = ({
   currentScore,
   level,
   onHandleClick,
-  onRestartClick,
+  onQuitClick,
 }) => {
   return (
     <>
@@ -19,7 +19,7 @@ const ModalNextLevel = ({
           ) : null} */}
         </p>
         <Button onClick={onHandleClick}>Next level</Button>
-        <Button onClick={onRestartClick}>Restart game</Button>
+        <Button onClick={onQuitClick}>Quit</Button>
       </div>
     </>
   );
