@@ -5,6 +5,7 @@
 
 .heading > .h1 {
   color: #ffcc03;
+  font-size: 3rem;
   letter-spacing: 0.5rem;
   text-transform: uppercase;
   text-shadow: 4px 2px 2px rgb(29, 44, 94);
@@ -19,7 +20,7 @@
 }
 
 .heading > img {
-  width: 22.5rem;
+  width: 19.5rem;
 
   @media (max-width: 850px) {
     width: 20rem;
