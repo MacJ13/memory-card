@@ -14,15 +14,23 @@ const Main = () => {
     highScore: 0,
   });
   const [clickedPokemons, setClickedPokemons] = useState([]);
+
   const scoreRef = useRef(0);
 
   const offset = getRandomNumber();
-  // const limit = 4 * game.level >= 16 ? 16 : 4 * game.level;
   const limit = game.limit;
 
   const playing = game.status === "playing";
 
   const start = game.status === "start";
+
+  const board = {
+    level: game.level,
+    current: game.currentScore,
+    high: game.highScore,
+    limit,
+    guessed: clickedPokemons.length,
+  };
 
   // const gameover = game.status === "gameover";
   // const lost = setClickedPokemons.length !== 0 && game.status === "gameover";
@@ -79,6 +87,7 @@ const Main = () => {
     } else if (scoreRef.current >= limit) {
       increaseScore("winner");
       scoreRef.current = 0;
+      setClickedPokemons([...clickedPokemons, pokemon]);
     } else {
       setClickedPokemons([...clickedPokemons, pokemon]);
       increaseScore("playing");
@@ -88,13 +97,7 @@ const Main = () => {
   const renderGame = () => {
     return (
       <>
-        {!start && (
-          <ScoreBoard
-            level={game.level}
-            current={game.currentScore}
-            high={game.highScore}
-          />
-        )}
+        {!start && <ScoreBoard board={board} />}
 
         {playing ? (
           <Card limit={limit} offset={offset} onCardClick={onCardClick} />
