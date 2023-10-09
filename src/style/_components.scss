@@ -44,26 +44,52 @@
 }
 
 .score-board {
-  display: flex;
   align-items: center;
-  gap: 1.25rem;
-  margin: 3rem auto 4rem auto;
-  max-width: 70rem;
+  display: flex;
+  justify-content: space-between;
+
+  gap: 4rem;
+  padding: 3rem 0 2rem 0;
+
+  max-width: 75rem;
+  margin: auto;
+  // margin-bottom: 2rem;
   width: 100%;
 
   @media (max-width: 850px) {
     flex-direction: column;
     gap: 0rem;
-    margin-bottom: 2rem;
 
     & > .h2 {
-      margin: 0.5rem 0;
+      margin: 0 auto 2rem auto;
     }
+  }
+}
+
+.score-results {
+  align-items: center;
+  display: flex;
+  justify-content: right;
+  flex: 1;
+  flex-wrap: wrap;
+
+  @media (max-width: 850px) {
+    justify-content: center;
   }
 }
 
 .score-high {
   color: #fbe694;
+}
+
+.score-guessed {
+  color: #eaeaea;
+  font-family: "Cursed Timer", sans-serif;
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+  max-width: 30rem;
+  text-align: center;
+  width: 100%;
 }
 
 /* CARDS */
@@ -74,8 +100,10 @@
   grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   justify-items: center;
   margin: 0 auto;
-  margin-bottom: 3rem;
+  // margin-bottom: 3rem;
+
   max-width: 55rem;
+  padding: 2rem 0 4rem 0;
   width: 100%;
 
   @media (max-width: 850px) {
