@@ -59,7 +59,9 @@ const ModalStart = ({ onHandleClick }) => {
               </g>{" "}
             </svg>
           </button>
-          <div className="modal-difficulties">{name}</div>
+          <div className="modal-difficulties">
+            Level: <span>{name}</span>
+          </div>
 
           <button className="modal-chevron-btn" onClick={onHandleNext}>
             <svg
