@@ -94,6 +94,25 @@
     height: 2rem;
   }
 }
+.modal-highscore {
+  color: rgb(46, 80, 180);
+  font-family: "Cursed Timer", sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  & > button {
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+  }
+}
 
 /* color: #fbe694; */
 .modal-btn {
@@ -119,6 +138,14 @@
 .modal-nextlevel-img {
   width: 100%;
   max-width: 10rem;
+}
+
+.modal-btn-highscore {
+  background-color: rgb(46, 80, 180);
+  color: white;
+  border-radius: 1rem;
+
+  padding: 0.66rem 1.5rem;
 }
 
 .transparent {
