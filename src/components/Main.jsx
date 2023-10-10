@@ -14,9 +14,10 @@ const Main = () => {
 
   const [game, setGame] = useState({
     ...INITIAL_GAME_SETUP,
-    highScore: localValue || INITIAL_GAME_SETUP.highScore,
+    highScore: localValue ?? INITIAL_GAME_SETUP.highScore,
   });
 
+  console.log({ localValue, highScore: game.highScore });
   // const [game, setGame] = useState({
   //   status: "start",
   //   level: 1,
@@ -53,6 +54,16 @@ const Main = () => {
   const quitGame = () => {
     setGame({ ...game, level: 1, limit: 4, currentScore: 0, status: "start" });
     setClickedPokemons([]);
+  };
+
+  const resetHighScore = () => {
+    setGame({
+      ...game,
+
+      highScore: INITIAL_GAME_SETUP.highScore,
+    });
+
+    setLocalValue(INITIAL_GAME_SETUP.highScore);
   };
 
   const startGame = (countLimit) => {
@@ -116,7 +127,7 @@ const Main = () => {
         ) : (
           <Modal
             game={game}
-            onResetHighScore={setLocalValue}
+            onResetHighScore={resetHighScore}
             onNextClick={nextLevel}
             onStartClick={startGame}
             onQuitClick={quitGame}
