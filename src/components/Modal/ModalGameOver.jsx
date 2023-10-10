@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import Button from "./Button";
+import Button from "../Button";
 
 const ModalGameOver = ({ onRestartClick, onQuitClick, currentScore }) => {
   return (
@@ -14,8 +14,12 @@ const ModalGameOver = ({ onRestartClick, onQuitClick, currentScore }) => {
             <em> You also set new record score!</em>
           ) : null} */}
         </p>
-        <Button onClick={onRestartClick}>Restart game</Button>
-        <Button onClick={onQuitClick}>Quit</Button>
+        <Button className="modal-btn" onClick={onRestartClick}>
+          Restart game
+        </Button>
+        <Button className="modal-btn" onClick={onQuitClick}>
+          Quit
+        </Button>
       </div>
     </>
   );

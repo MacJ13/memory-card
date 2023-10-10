@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import Button from "./Button";
+import Button from "../Button";
 
 // eslint-disable-next-line react/prop-types
 const ModalNextLevel = ({
@@ -18,8 +18,12 @@ const ModalNextLevel = ({
             <em> You also set new record score!</em>
           ) : null} */}
         </p>
-        <Button onClick={onHandleClick}>Next level</Button>
-        <Button onClick={onQuitClick}>Quit</Button>
+        <Button className="modal-btn" onClick={onHandleClick}>
+          Next level
+        </Button>
+        <Button className="modal-btn" onClick={onQuitClick}>
+          Quit
+        </Button>
       </div>
     </>
   );

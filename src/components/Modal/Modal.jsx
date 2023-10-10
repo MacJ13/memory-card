@@ -12,6 +12,7 @@ const Modal = ({
   onStartClick,
   onQuitClick,
   onRestartClick,
+  onResetHighScore,
 }) => {
   const [triggerAnimation, setTriggerAnimation] = useState(true);
 
@@ -50,7 +51,13 @@ const Modal = ({
           onHandleClick={onNextClick}
         />
       );
-    } else return <ModalStart onHandleClick={onStartClick} />;
+    } else
+      return (
+        <ModalStart
+          onHandleClick={onStartClick}
+          onResetHighScore={onResetHighScore}
+        />
+      );
   };
 
   return <div className={cardClass}>{renderModal()}</div>;
