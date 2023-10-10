@@ -4,7 +4,7 @@ import Button from "../Button";
 import Heading from "./Heading";
 
 // eslint-disable-next-line react/prop-types
-const ModalStart = ({ onHandleClick, onResetHighScore }) => {
+const ModalStart = ({ highScore, onHandleClick, onResetHighScore }) => {
   const [number, setNumber] = useState(0);
 
   const { name, count } = LEVEL_DIFFICULTIES[number];
@@ -35,6 +35,20 @@ const ModalStart = ({ onHandleClick, onResetHighScore }) => {
           <strong>don&apos;t try to click on any more than once!</strong> Good
           luck!
         </p>
+        {highScore !== 0 && (
+          <div className="modal-highscore">
+            High Score: {highScore}
+            <Button
+              className="modal-btn-highscore"
+              onClick={() => {
+                onResetHighScore(0);
+              }}
+            >
+              Reset
+            </Button>
+          </div>
+        )}
+
         <div className="modal-controls">
           <button className="modal-chevron-btn" onClick={onHandlePrevious}>
             <svg
@@ -62,7 +76,6 @@ const ModalStart = ({ onHandleClick, onResetHighScore }) => {
           <div className="modal-difficulties">
             Level: <span>{name}</span>
           </div>
-
           <button className="modal-chevron-btn" onClick={onHandleNext}>
             <svg
               width="32px"
@@ -92,14 +105,6 @@ const ModalStart = ({ onHandleClick, onResetHighScore }) => {
           }}
         >
           Start game
-        </Button>
-        <Button
-          className="modal-btn"
-          onClick={() => {
-            onResetHighScore(0);
-          }}
-        >
-          Reset High Score
         </Button>
       </div>
     </>

@@ -25,7 +25,7 @@ const Modal = ({
       clearTimeout(triggerTimer);
     };
   }, []);
-  const { status, level, currentScore } = game;
+  const { status, level, currentScore, highScore } = game;
 
   const cardClass = !triggerAnimation ? "modal" : "modal transparent";
 
@@ -54,6 +54,7 @@ const Modal = ({
     } else
       return (
         <ModalStart
+          highScore={highScore}
           onHandleClick={onStartClick}
           onResetHighScore={onResetHighScore}
         />
