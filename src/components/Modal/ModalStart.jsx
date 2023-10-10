@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { LEVEL_DIFFICULTIES } from "../../data/config";
-import Button from "./Button";
+import Button from "../Button";
 import Heading from "./Heading";
 
 // eslint-disable-next-line react/prop-types
-const ModalStart = ({ onHandleClick }) => {
+const ModalStart = ({ onHandleClick, onResetHighScore }) => {
   const [number, setNumber] = useState(0);
 
   const { name, count } = LEVEL_DIFFICULTIES[number];
@@ -86,11 +86,20 @@ const ModalStart = ({ onHandleClick }) => {
           </button>
         </div>
         <Button
+          className="modal-btn"
           onClick={() => {
             onHandleClick(count);
           }}
         >
           Start game
+        </Button>
+        <Button
+          className="modal-btn"
+          onClick={() => {
+            onResetHighScore(0);
+          }}
+        >
+          Reset High Score
         </Button>
       </div>
     </>
