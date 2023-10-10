@@ -3,16 +3,27 @@ import { useRef, useState } from "react";
 import Card from "./Card/Card";
 import Modal from "./Modal/Modal";
 import ScoreBoard from "./Scoreboard/ScoreBoard";
-import { getRandomNumber } from "../data/config";
+import { INITIAL_GAME_SETUP, getRandomNumber } from "../data/config";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const Main = () => {
+  const [localValue, setLocalValue] = useLocalStorage(
+    "highScore",
+    INITIAL_GAME_SETUP.highScore
+  );
+
   const [game, setGame] = useState({
-    status: "start",
-    level: 1,
-    limit: 4,
-    currentScore: 0,
-    highScore: 0,
+    ...INITIAL_GAME_SETUP,
+    highScore: localValue || INITIAL_GAME_SETUP.highScore,
   });
+
+  // const [game, setGame] = useState({
+  //   status: "start",
+  //   level: 1,
+  //   limit: 4,
+  //   currentScore: 0,
+  //   highScore: 0,
+  // });
   const [clickedPokemons, setClickedPokemons] = useState([]);
 
   const scoreRef = useRef(0);
@@ -71,6 +82,7 @@ const Main = () => {
         currentScore: score,
         highScore: score,
       });
+      setLocalValue(score);
     } else {
       setGame({ ...game, status: gameStatus, currentScore: score });
     }
@@ -104,6 +116,7 @@ const Main = () => {
         ) : (
           <Modal
             game={game}
+            onResetHighScore={setLocalValue}
             onNextClick={nextLevel}
             onStartClick={startGame}
             onQuitClick={quitGame}
