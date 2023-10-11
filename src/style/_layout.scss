@@ -19,7 +19,7 @@
   transform: translate(-50%, -50%);
 }
 
-.modal-start {
+.modal-box {
   background-color: #eaeaea;
   padding: 2.75rem;
   border: 6px solid rgb(46, 80, 180);
@@ -40,7 +40,7 @@
   }
 }
 
-.modal-start > .h2 {
+.modal-box > .h2 {
   font-family: "Cursed Timer", sans-serif;
 
   margin-bottom: 2rem;
@@ -50,7 +50,7 @@
   text-transform: uppercase;
 }
 
-.modal-start > .paragraph {
+.modal-box > .paragraph {
   margin: auto;
   margin-bottom: 2rem;
 }
