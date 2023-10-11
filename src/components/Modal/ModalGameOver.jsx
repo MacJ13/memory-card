@@ -8,7 +8,10 @@ const ModalGameOver = ({ onRestartClick, onQuitClick, currentScore }) => {
       <div className="modal-start">
         <h1 className="h2">Game Over!</h1>
         <p className="paragraph">
-          Your current result is: <strong>{currentScore}</strong>
+          Your current result is:{" "}
+          <strong style={{ fontFamily: '"Cursed Timer", sans-serif' }}>
+            {currentScore}
+          </strong>
           <br />
           {/* {highScore !== 0 && currentScore > highScore + 1 ? (
             <em> You also set new record score!</em>
