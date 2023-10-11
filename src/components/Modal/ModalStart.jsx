@@ -29,48 +29,46 @@ const ModalStart = ({ highScore, onHandleClick, onResetHighScore }) => {
   return (
     <>
       <ModalBox>
-        <div className="modal-start">
-          <Heading />
-          <p className="paragraph">
-            Welcome to <strong>Pokemon - Memory Game!</strong> Get points by
-            clicking on a card of pokemon but{" "}
-            <strong>don&apos;t try to click on any more than once!</strong> Good
-            luck!
-          </p>
-          {highScore !== 0 && (
-            <div className="modal-highscore">
-              High Score: {highScore}
-              <Button
-                className="modal-btn-highscore"
-                onClick={() => {
-                  onResetHighScore(0);
-                }}
-              >
-                Reset
-              </Button>
-            </div>
-          )}
-
-          <div className="modal-controls">
-            <Button className="modal-chevron-btn" onClick={onHandlePrevious}>
-              {rightChevronSvg}
-            </Button>
-            <div className="modal-difficulties">
-              Level: <span>{name}</span>
-            </div>
-            <Button className="modal-chevron-btn" onClick={onHandleNext}>
-              {leftChevronSvg}
+        <Heading />
+        <p className="paragraph">
+          Welcome to <strong>Pokemon - Memory Game!</strong> Get points by
+          clicking on a card of pokemon but{" "}
+          <strong>don&apos;t try to click on any more than once!</strong> Good
+          luck!
+        </p>
+        {highScore !== 0 && (
+          <div className="modal-highscore">
+            High Score: {highScore}
+            <Button
+              className="modal-btn-highscore"
+              onClick={() => {
+                onResetHighScore(0);
+              }}
+            >
+              Reset
             </Button>
           </div>
-          <Button
-            className="modal-btn"
-            onClick={() => {
-              onHandleClick(count);
-            }}
-          >
-            Start game
+        )}
+
+        <div className="modal-controls">
+          <Button className="modal-chevron-btn" onClick={onHandlePrevious}>
+            {rightChevronSvg}
+          </Button>
+          <div className="modal-difficulties">
+            Level: <span>{name}</span>
+          </div>
+          <Button className="modal-chevron-btn" onClick={onHandleNext}>
+            {leftChevronSvg}
           </Button>
         </div>
+        <Button
+          className="modal-btn"
+          onClick={() => {
+            onHandleClick(count);
+          }}
+        >
+          Start game
+        </Button>
       </ModalBox>
     </>
   );
