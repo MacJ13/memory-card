@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is created with:
+This is the pokemon memory game created with :
 
 - react
 - react useState hook
